@@ -32,7 +32,7 @@
       if (settings.slide_number) {
         if(index == 0) number_container.find('span:first').text(" 라오스 현지의 커피 농장 ");
         if(index == 1) number_container.find('span:first').text(" 고양시 매장 ");
-        if(index == 2) number_container.find('span:first').text(" 라오스의 마스코트 코끼리 ");
+        if(index == 2) number_container.find('span:first').text(" 라오스의 마스코트 코끼 ");
         
       }
       if (settings.bullets) {
