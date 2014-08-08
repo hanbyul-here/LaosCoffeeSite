@@ -7,32 +7,16 @@
     <title>네모 커피입니다</title>
     <link rel="shortcut icon" type="image/png" href="./img/coffee_beans.png">
     <link rel="stylesheet" href="css/foundation.css" />
-    <style>
-    @import url(http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
-    @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-      .title {
-        font-family: 'Nanum Brush Script', cursive;
-      
-      }
-      .contents{
-        font-family: 'Nanum Gothic';
-      }
-    </style>
     <script src="js/vendor/modernizr.js"></script>
     <!-- prevent IE6 flickering -->
-    <script type="text/javascript">
-      try {document.execCommand('BackgroundImageCache', false, true);} catch(e) {}
-    </script>
-  <script type="text/javascript" src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&key=0d0db965120fb84bda8ce12a2f4a7d75"></script>
   </head>
   <body>
   
   <div class="row">
     <div class="large-12 columns">
- 
           <div id="featured" data-orbit>
               <img src="./img/farm.jpg" alt="slide image">
-              <img src="./img/store.jpg" alt="slide image">
+              <img src="./img/coffee_red_fruits.jpg" alt="slide image">
               <img src="./img/elephant.jpg" alt="slide image">
             </div>
             <p class="contents" style="font-size:30px;position:absolute;left:30px;bottom:50px;"></p>
@@ -47,15 +31,18 @@
       <p class="contents" >네모 커피는 2010년, 라오스 커피의 매력을 알리고 싶다는 열정으로 시작하였습니다. 양질의 커피를 유통하기 위해, 라오스 볼라벤 고원의 커피 농장에서의 커피 재배부터 시작하여 한국에서의 가공과정까지 마음을 다해 관리하고 있습니다. 매장에 오셔서, 부담없이 라오스 커피를 즐겨보세요. </p>
 
       <p class="contents"> 
-        매장 위치 : 고양시 덕양구 토당동 호수로 91 (지도 참조) <br>
+        매장 위치 : 고양시 덕양구 토당동 호수로 91 (토당동 671-16) <br>
         전화 : 031-978-3081<br>
         모바일 : 010-8081-7000  <br>
         이메일 : laos0908@hanmail.net</p>
 
     </div>
     
-    <div style="height:310px;" class="large-4 columns">     
-        <div id = "testMap" style="border:1px solid #000; height:300px;"></div
+    <div id="map" style="height:310px;" class="large-4 columns">     
+        <!--<a id="maplink" href="http://maps.naver.com/?menu=location&mapMode=0&lat=37.6326279&lng=126.7984116&dlevel=8&searchCoord=126.9774559%3B37.567939&query=6rOg7JaR7IucIOuNleyWkeq1rCDthqDri7nrj5kgNjcxLTE2&mpx=09140550%3A37.567939%2C126.9774559%3AZ11%3A0.0170681%2C0.0118402&tab=1&enc=b64" target="new">-->
+        <!--<img src="http://openapi.naver.com/map/getStaticMap?version=1.0&crs=EPSG:4326&center=126.81542820000004,37.626385&amp;level=11&w=320&h=320&maptype=default&key=b261f8723751beec6426cf7b61b3001e&uri=127.0.0.1:8000">
+-->
+     
     </div>      
   </div>
   
@@ -74,69 +61,23 @@
     <script>
       $(document).foundation();
     </script>
+    <script>
+    $(document).ready(function(){
+      var w = $("#map").width();
+      var mapKey = "0d0db965120fb84bda8ce12a2f4a7d75";
+      var uri = "hanbyul-here.github.io/LaosCoffeeSite";
+      var imgString = "http://openapi.naver.com/map/getStaticMap?version=1.0&crs=EPSG:4326&center=126.81542820000004,37.626385&level=11&w=" +w +"&h=320&maptype=default&key="+mapKey+"&uri="+uri;
 
-    <script type="text/javascript">
-        var oPoint = new nhn.api.map.LatLng(37.626385,126.81542820000004);
-        nhn.api.map.setDefaultPoint('LatLng');
-        oMap = new nhn.api.map.Map('testMap' ,{
-            point : oPoint,
-            zoom : 10,
-            enableWheelZoom : true,
-            enableDragPan : true,
-            enableDblClickZoom : false,
-            mapMode : 0,
-            activateTrafficMap : false,
-            activateBicycleMap : false,
-            minMaxLevel : [ 1, 14 ]
-        });
+      var mapImage = $('<canvas/>',{'src':imgString});
 
-        var mapZoom = new nhn.api.map.ZoomControl(); // - 줌 컨트롤 선언
-        mapZoom.setPosition({left:10, top:10}); // - 줌 컨트롤 위치 지정
-        oMap.addControl(mapZoom); // - 줌 컨트롤 추가.
 
-        
-        var oSize = new nhn.api.map.Size(28, 37);
-        var oOffset = new nhn.api.map.Size(14, 37);
-        var oIcon = new nhn.api.map.Icon('http://static.naver.com/maps2/icons/pin_spot2.png', oSize, oOffset);
-        
-        var mapInfoTestWindow = new nhn.api.map.InfoWindow(); // - info window 생성
-        mapInfoTestWindow.setVisible(false); // - infowindow 표시 여부 지정.
-        oMap.addOverlay(mapInfoTestWindow);     // - 지도에 추가.     
-        
-        var oLabel = new nhn.api.map.MarkerLabel(); // - 마커 라벨 선언.
-        oMap.addOverlay(oLabel); // - 마커 라벨 지도에 추가. 기본은 라벨이 보이지 않는 상태로 추가됨.
 
-        mapInfoTestWindow.attach('changeVisible', function(oCustomEvent) {
-          if (oCustomEvent.visible) {
-              oLabel.setVisible(false);
-          }
-        });
-        
-        
-        oMap.attach('mouseenter', function(oCustomEvent) {
-        var oTarget = oCustomEvent.target;
-        // 마커위에 마우스 올라간거면
-        if (oTarget instanceof nhn.api.map.Marker) {
-          var oMarker = oTarget;
-          oLabel.setVisible(true, oMarker); // - 특정 마커를 지정하여 해당 마커의 title을 보여준다.
-          }
-        });
-        
-        oMap.attach('mouseleave', function(oCustomEvent) {
-        var oTarget = oCustomEvent.target;
-        // 마커위에서 마우스 나간거면
-        if (oTarget instanceof nhn.api.map.Marker) {
-          oLabel.setVisible(false);
-          }
-        });
-        
-        var oPoint = new nhn.api.map.LatLng(37.626385,126.81542820000004);
-        // 마커 지도에 부착
-        var oMarker = new nhn.api.map.Marker(oIcon, { title : '네모커피 고양시 매장'});
-        oMarker.setPoint(oPoint);
-        oMap.addOverlay(oMarker);
-        
+      console.log(imgString);
+
+      $("#map").append(mapImage);
+    });
     </script>
-</body>
+
   </body>
 </html>
+
