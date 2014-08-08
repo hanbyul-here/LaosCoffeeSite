@@ -66,12 +66,9 @@
       var w = $("#map").width();
       var mapKey = "0d0db965120fb84bda8ce12a2f4a7d75";
       var uri = "hanbyul-here.github.io/LaosCoffeeSite";
-      var imgString = "http://openapi.naver.com/map/getStaticMap?version=1.0&crs=EPSG:4326&center=126.81542820000004,37.626385&level=11&w=" +w +"&h=320&maptype=default&key="+mapKey+"&uri="+uri;
+      var imgString = "http://openapi.naver.com/map/getStaticMap?version=1.0&crs=EPSG:4326&center=126.81542820000004,37.626385&level=11&w=" +w +"&h=300&maptype=default&key="+mapKey+"&uri="+uri;
 
       var mapImage = $('<canvas/>',{'src':imgString});
-
-
-
       console.log(imgString);
 
       $("#map").append(mapImage);
